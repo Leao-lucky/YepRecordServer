@@ -1,9 +1,15 @@
 package com.yep.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Entity
+@Table(name = "user_info")
 public class UserInfo {
 
     @Id
@@ -24,4 +30,5 @@ public class UserInfo {
 
     @Column(nullable = false)
     private LocalDateTime modifiedTime;
+
 }

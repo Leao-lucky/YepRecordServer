@@ -10,6 +10,6 @@ public class YepRecordApplication {
    public static void main(String[] args) {
       SpringApplication.run(YepRecordApplication.class, args);
    }
-   
+
 
 }

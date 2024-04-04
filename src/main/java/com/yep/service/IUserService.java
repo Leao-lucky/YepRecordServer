@@ -5,9 +5,9 @@ import com.yep.exception.ResultResponse;
 
 public interface IUserService {
 
-    ResultResponse loginService(String userName, String pwd);
+    ResultResponse loginByName(String userName, String pwd);
 
-    ResultResponse loginService(String email, int verfyWord);
+    ResultResponse loginByEmail(String email, String  pwd);
 
     ResultResponse sendVerifyWord(String email);
 

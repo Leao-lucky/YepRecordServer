@@ -16,12 +16,12 @@ public class UserController {
 
     @PostMapping("/loginByName")
     public ResultResponse loginByName(@RequestParam String uname, @RequestParam String pwd){
-        return userService.loginService(uname, pwd);
+        return userService.loginByName(uname, pwd);
     }
 
     @PostMapping("/loginByEmail")
-    public ResultResponse loginByEmail(@RequestParam String email, @RequestParam int verifyWord){
-        return userService.loginService(email, verifyWord);
+    public ResultResponse loginByEmail(@RequestParam String email, @RequestParam String pwd){
+        return userService.loginByEmail(email, pwd);
     }
 
     @PostMapping("/register")

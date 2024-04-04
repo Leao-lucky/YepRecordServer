@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
     private int verifyCode;
 
     @Override
-    public ResultResponse loginService(String userName, String pwd) {
+    public ResultResponse loginByName(String userName, String pwd) {
         ResultResponse response;
         UserInfo userInfo = userDao.findByNameAndPassword(userName, pwd);
         if (userInfo != null) {
@@ -36,7 +36,6 @@ public class UserServiceImpl implements IUserService {
             }else {
                 response = ResultResponse.error(ExceptionEnum.PASSWORD_NOT_MATCH);
             }
-
         } else {
             response = ResultResponse.error(ExceptionEnum.INFORMATION_NOT_FOUND);
         }
@@ -44,14 +43,15 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResultResponse loginService(String email, int verifyWord) {
-        UserInfo userInfo = userDao.findByEmail(email);
+    public ResultResponse loginByEmail(String email, String pwd) {
         ResultResponse response;
+        UserInfo userInfo = userDao.findByEmailAndPassword(email, pwd);
         if (userInfo != null) {
-            if (this.verifyCode == verifyWord && new Date().getTime() < endTime) {
+            if (userInfo.getPassword().equals(pwd)) {
+                //重要信息置空
                 userInfo.setPassword("");
                 response = ResultResponse.success(userInfo);
-            } else {
+            }else {
                 response = ResultResponse.error(ExceptionEnum.PASSWORD_NOT_MATCH);
             }
         } else {
@@ -70,7 +70,7 @@ public class UserServiceImpl implements IUserService {
         verifyCode = (int) ((Math.random() * 9 + 1) * 100000);
         endTime = new Date().getTime() + 10 * 60 * 1000;
         mail.setRecipient(email);
-        mail.setSubject("修改邮箱");
+        mail.setSubject("注册邮箱");
         mail.setContent("亲爱的用户：您好！\n" +
                 "\n" + "    您收到这封电子邮件是因为您正在注册YepRecord应用。假如这不是您本人所申请, 请不用理会这封电子邮件, 但是如果您持续收到这类的信件骚扰, 请您尽快联络管理员。\n" +
                 "\n" +

@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @description: 自定义异常处理
- * @author: DT
- * @date: 2021/4/19 21:51
- * @version: v1.0
- */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

@@ -2,12 +2,6 @@ package com.yep.exception;
 
 import com.alibaba.fastjson.JSONObject;
 
-/**
- * @description: 自定义数据传输
- * @author: DT
- * @date: 2021/4/19 21:47
- * @version: v1.0
- */
 public class ResultResponse {
     /**
      * 响应代码
